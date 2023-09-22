@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="node_start_delay" default="2.0" />
+    <node name="capture_server" pkg="moveit_tutorials" type="capture_server.py" output="screen" />
+    <node name="motion_server" pkg="moveit_tutorials" type="joint_planner_server.py" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " />
+    <node name="random_motion_server" pkg="moveit_tutorials" type="joint_planner_server2.py" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " />
+    <node name="motion_and_capture_manager" pkg="moveit_tutorials" type="motion_and_capture_manager.py" output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' " />
+</launch>

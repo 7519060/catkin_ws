@@ -1,0 +1,9 @@
+rosbag/
+data/
+input_dsrim/
+pinv_int_mat/
+valid_joint_values/
+tested/
+rndmth_result/
+pinv_int_mat_pickle/
+servo_data/
