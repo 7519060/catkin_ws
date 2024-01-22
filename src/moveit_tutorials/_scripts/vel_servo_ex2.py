@@ -16,6 +16,7 @@ from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 import signal
 import sys
+
 import atexit
 
 #for velocity control
@@ -32,9 +33,9 @@ from controller_manager_msgs.srv import SwitchController
 nop = 2073600 ###realsense 1920*1080
 pinv_int_mat_double = np.empty((6,nop))
 I_dsr_vec = np.empty((nop, 1))
-lmbd = 1.0
+lmbd = 0.8
 
-rmseth = 25
+rmseth = 35
 
 time_series = []
 rmse_data = []
@@ -101,9 +102,9 @@ def signal_handler(sig, frame):
     vel_pub.publish(vel_input)
     print('stop command sent')
     
-    filename = './servo_data/loop_rmse_data.csv'
-    filename2 = './servo_data/joint_vel_data.csv'
-    filename3 = './servo_data/pose_data.csv'
+    filename = './servo_data/ex2/loop_rmse_data.csv'
+    filename2 = './servo_data/ex2/joint_vel_data.csv'
+    filename3 = './servo_data/ex2/pose_data.csv'
     with open (filename, 'w') as f, open(filename2, 'w')as f2, open(filename3, 'w')as f3:
         writer = csv.writer(f)
         writer.writerow(rmse_data)
@@ -121,7 +122,7 @@ def signal_handler(sig, frame):
     plt.ylabel('RMSE', fontsize=18)
     plt.plot(time_series, rmse_data, 'b-')
     plt.grid()
-    fig_rmse.savefig('./servo_data/rmse_double.png', bbox_inches = 'tight')
+    fig_rmse.savefig('./servo_data/ex2/rmse_double.png')
     # fig_rmse.savefig('./servo_data/rmse_double.png', dpi=300, bbox_inches='tight')
     
     # plt.rcParams['font.family'] = 'Times New Roman'
@@ -188,7 +189,7 @@ def signal_handler(sig, frame):
     
     #縦軸横軸の最大値、最小値、目盛り自動設定のグラフ保存
     # fig.savefig('./servo_data/joint_vel_values.png', dpi=300, bbox_inches='tight')
-    fig.savefig('./servo_data/joint_vel_values.png', bbox_inches = 'tight')
+    fig.savefig('./servo_data/ex2/joint_vel_values.png')
     
     # base_axis_array = np.arange(-0.04, 0.04, 0.01)
     # shoulder_axis_array = np.arange(-0.04, 0.04, 0.01)
@@ -218,7 +219,7 @@ def signal_handler(sig, frame):
     ax6.set_ylim(y_min, y_max)
     
     #スケールを合わせたグラフを保存
-    fig.savefig('./servo_data/joint_values_double_scaled.png', bbox_inches = 'tight')
+    fig.savefig('./servo_data/ex2/joint_values_double_scaled.png')
     # fig.savefig('./servo_data/joint_values_double_scaled.png', dpi=300, bbox_inches='tight')
     
     fig_dist = plt.figure()
@@ -230,7 +231,7 @@ def signal_handler(sig, frame):
     plt.plot(time_series, dist_data, 'b-')
     plt.tight_layout()
     plt.grid()
-    fig_dist.savefig('./servo_data/3dposedist.png', bbox_inches = 'tight')
+    fig_dist.savefig('./servo_data/ex2/3dposedist.png')
     # fig_dist.savefig('./servo_data/3dposedist.png', dpi=300, bbox_inches='tight')
 
     sys.exit(0)
@@ -292,9 +293,9 @@ def main(msg):
         vel_pub.publish(vel_input)
         print('stop command sent')
         
-        filename = './servo_data/loop_rmse_data.csv'
-        filename2 = './servo_data/joint_vel_data.csv'
-        filename3 = './servo_data/pose_data.csv'
+        filename = './servo_data/ex2/loop_rmse_data.csv'
+        filename2 = './servo_data/ex2/joint_vel_data.csv'
+        filename3 = './servo_data/ex2/pose_data.csv'
         with open (filename, 'w') as f, open(filename2, 'w')as f2, open(filename3, 'w')as f3: 
             writer = csv.writer(f)
             writer.writerow(rmse_data)
@@ -312,7 +313,7 @@ def main(msg):
         plt.ylabel('RMSE')
         plt.plot(time_series, rmse_data, 'b-')
         plt.grid()
-        fig_rmse.savefig('./servo_data/rmse_double.png', bbox_inches = 'tight')
+        fig_rmse.savefig('./servo_data/ex2/rmse_double.png')
         # fig_rmse.savefig('./servo_data/rmse_double.png', dpi=300, bbox_inches='tight')
         
         # plt.rcParams['font.family'] = 'Times New Roman'
@@ -378,7 +379,7 @@ def main(msg):
         ax6.grid()
         
         #縦軸横軸の最大値、最小値、目盛り自動設定のグラフ保存
-        fig.savefig('./servo_data/joint_vel_values.png', bbox_inches = 'tight')
+        fig.savefig('./servo_data/ex2/joint_vel_values.png')
         # fig.savefig('./servo_data/joint_vel_values.png', dpi=300, bbox_inches='tight')
         
         # y-axisの最大値と最小値を計算
@@ -394,7 +395,7 @@ def main(msg):
         ax6.set_ylim(y_min, y_max)
 
         # 保存
-        fig.savefig('./servo_data/joint_values_double_scaled.png', bbox_inches = 'tight')
+        fig.savefig('./servo_data/ex2/joint_values_double_scaled.png')
         # fig.savefig('./servo_data/joint_values_double_scaled.png', dpi=300, bbox_inches='tight')
         
         fig_dist = plt.figure()
@@ -406,7 +407,7 @@ def main(msg):
         plt.plot(time_series, dist_data, 'b-')
         plt.tight_layout()
         plt.grid()
-        fig_dist.savefig('./servo_data/3dposedist.png', bbox_inches = 'tight')
+        fig_dist.savefig('./servo_data/ex2/3dposedist.png')
         # fig_dist.savefig('./servo_data/3dposedist.png', dpi=300, bbox_inches='tight')
 
         rospy.signal_shutdown('finish')
@@ -446,6 +447,8 @@ def main(msg):
         dist_data.append(dist)
         
         return rmse, time_series, rmse_data, base_joint_data, shoulder_joint_data, elbow_joint_data, wrist1_joint_data, wrist2_joint_data, wrist3_joint_data, joint_vel_values_data, pose_data, dist_data
+        
+
     
 if __name__ == '__main__':
     try:

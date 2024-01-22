@@ -40,9 +40,10 @@ def RandomMotionCommand():
 def main():
 	rospy.init_node('moiton_and_capture_manager')
 	# MotionCommand()
-	for j in range(530):
+	for j in range(600):
 		print('j =')
 		print(j)
+		# MotionCommand()
 		RandomMotionCommand()
 
 

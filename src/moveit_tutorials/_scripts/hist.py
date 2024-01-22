@@ -6,7 +6,10 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 # img = cv2.imread('./desired_image.png')
-img = cv2.imread('./kensyo_desired_image.png')
+img = cv2.imread('./input_dsrim/kensyo_desired_image.png')
+# img = cv2.imread('./desired_im.png')
+# img = cv2.imread('./kensyo_initial_image.png')
+# img = cv2.imread('./20231004_140232_image.png')
 # img = cv2.imread('./test_image.png', cv2.IMREAD_GRAYSCALE)
 
 # hist, bins = np.histogram(img.flatten(), 256, [0, 256])

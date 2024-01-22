@@ -18,6 +18,7 @@ nop = 2073600 ###realsense
 def gen_I_dsr_vec():
     global I_dsr_vec
     I_dsr_orig = cv2.imread('./data/desired_im.png')
+    # I_dsr_orig = cv2.imread('./input_dsrim/kensyo_desired_image.png')
     I_dsr_gry = cv2.cvtColor(I_dsr_orig, cv2.COLOR_BGR2GRAY)
     I_dsr_arr = np.array(I_dsr_gry, dtype='float64')
     I_dsr_vec = I_dsr_arr.reshape(-1,1)

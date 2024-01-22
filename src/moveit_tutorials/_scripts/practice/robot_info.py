@@ -26,13 +26,13 @@ def main():
 
     # group informaion
     print('==Group Info==')
-    print('[ name ] ', move_group.get_name())
+    # print('[ name ] ', move_group.get_name())
     print('[ planning_frame ] ', move_group.get_planning_frame())
-    print('[ interface_description ] ', move_group.get_interface_description())
+    # print('[ interface_description ] ', move_group.get_interface_description())
 
     # joint information
     print('==Joint Info==')
-    print('[ active_joints ] ', move_group.get_active_joints())
+    # print('[ active_joints ] ', move_group.get_active_joints())
     print('[ joints ] ', move_group.get_joints())
     print('[ current_joint_values ] ', move_group.get_current_joint_values())
 
@@ -42,6 +42,7 @@ def main():
     print('[ end_effector_link ] ', move_group.get_end_effector_link())
     print('[ current_pose ] ', move_group.get_current_pose())
     print('[ current_rpy ] ', move_group.get_current_rpy())
+    # print('[]')
 
 
 if __name__ == '__main__':

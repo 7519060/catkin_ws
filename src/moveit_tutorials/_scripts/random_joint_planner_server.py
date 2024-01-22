@@ -14,10 +14,8 @@ def random_pose(goal):
     # theta = []
     ### ランダムな角度を固定したcsvファイル作成しているのでappendしてfileに書き込む必要ない
     ### pose_data[]取りたかったらjoint_planner_server2.py参照
-    moveit_commander.roscpp_initialize(sys.argv)
-    move_group = moveit_commander.MoveGroupCommander('manipulator')
-    move_group.set_max_velocity_scaling_factor(value=0.08)
-    move_group.set_max_acceleration_scaling_factor(value=0.08)
+    # move_group.set_max_velocity_scaling_factor(value=0.08)
+    # move_group.set_max_acceleration_scaling_factor(value=0.08)
     joint_goal = list(goal.valid_joint_values)
     print(joint_goal)
     print(type(joint_goal))
@@ -38,6 +36,8 @@ def random_pose(goal):
 
 if __name__ == '__main__':
     rospy.init_node('random_motion_server')
+    moveit_commander.roscpp_initialize(sys.argv)
+    move_group = moveit_commander.MoveGroupCommander('manipulator')
     rospy.loginfo('random motion server started')
     random_motion_server = actionlib.SimpleActionServer('ugoke_random', ValidJointsAction, random_pose, False)
     random_motion_server.start()

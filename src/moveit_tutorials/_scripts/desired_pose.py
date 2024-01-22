@@ -16,16 +16,10 @@ def Move():
 	# move_group.go(wait=True)
 	# print('moved to waypoint 1')
 	
-	# joint_goal2_deg = [92.42, -92.39, 107.23, -13.87, 76.01, -180.80] ###上のdesiredをデータセットに合わせてwrist3変えたやつ
-	# joint_goal2_deg = [92.43, -92.23, 107.70, -14.47, 76.03, -180.79] ###dsr_poseから出たやつ
-	# joint_goal2_deg = [91.97, -106.48, 128.12, -20.61, 75.58, -180.92]
-	# joint_goal2_deg = [119.69, -87.58, 111.64, -23.17, 103.25, -180.29]
-	# joint_goal2 = [x * pi/180 for x in joint_goal2_deg]
- 
-	joint_goal2 = [1.60414, -1.90515, 2.10868, -0.18457, 1.31903, -3.15687] ###desired2
-	# joint_goal2 = [2.08805, -1.57296, 1.84294, -0.25174, 1.80266, -3.14726] ###desired3
-	# joint_goal2 = [1.613207, -1.609717, 1.879719, -0.252549, 1.326974, -3.155381] ###desired1
- 
+	joint_goal2_deg = [89.07, -75.87, 90.32, -14.37, 88.57, -0.09] ###ddesireed 1 v3
+	# joint_goal2_deg = [90.92, -90.08, 106.67, -16.50, 90.40, -0.22] ###desired 2_v2
+	joint_goal2 = [x * pi/180 for x in joint_goal2_deg]
+
 	move_group.set_joint_value_target(joint_goal2)
 	print(joint_goal2)
 	move_group.go(wait=True)

@@ -5,6 +5,7 @@ import numpy as np
 
 # img = cv2.imread('./desired_image.png', cv2.IMREAD_GRAYSCALE)
 img = cv2.imread('./kensyo_desired_image.png', cv2.IMREAD_GRAYSCALE)
+# img = cv2.imread('./kensyo_initial_image.png', cv2.IMREAD_GRAYSCALE)
 def click_pos(event, x, y, flags, params):
     if event == cv2.EVENT_LBUTTONDOWN:
         img2 = np.copy(img)
